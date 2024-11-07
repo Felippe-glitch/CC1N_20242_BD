@@ -92,30 +92,66 @@ CREATE TABLE IF NOT EXISTS RESERVAS (
     CONSTRAINT FK_VOOS FOREIGN KEY(VOO_ID) REFERENCES VOOS(VOO_ID)
 );
 
--- DML'S PARA A TABELA PASSAGEIROS
-INSERT INTO PASSAGEIROS (PASS_CPF, PASS_NOME, PASS_TELEFONE, PASS_RUA, PASS_NUMRUA, PASS_BAIRRO, PASS_CIDADE, PASS_ESTADO, PASS_PAIS, PASS_CODPOSTAL, PASS_EMAIL) VALUES ('12345678901', 'Carlos Silva', '(11) 91234-5678', 'Rua das Flores', 123, 'Centro', 'São Paulo', 'SP', 'Brasil', '01000-000', 'carlos.silva@example.com'), ('10987654321', 'Ana Costa', '(21) 98765-4321', 'Avenida Brasil', 456, 'Jardim', 'Rio de Janeiro', 'RJ', 'Brasil', '20000-000', 'ana.costa@example.com'); 
-UPDATE PASSAGEIROS SET PASS_EMAIL = 'carlos.novoemail@example.com' WHERE PASS_CPF = '12345678901';
+-- DML's para a Tabela PASSAGEIROS
+INSERT INTO PASSAGEIROS (PASS_CPF, PASS_NOME, PASS_TELEFONE, PASS_RUA, PASS_NUMRUA, PASS_BAIRRO, PASS_CIDADE, PASS_ESTADO, PASS_PAIS, PASS_CODPOSTAL, PASS_EMAIL)
+VALUES 
+('12345678901', 'João Silva', '11987654321', 'Rua das Flores', 123, 'Centro', 'São Paulo', 'SP', 'Brasil', '01234-567', 'joao.silva@email.com'),
+('23456789012', 'Maria Oliveira', '21987654321', 'Avenida Brasil', 456, 'Jardim Paulista', 'Rio de Janeiro', 'RJ', 'Brasil', '02345-678', 'maria.oliveira@email.com'),
+('34567890123', 'Carlos Souza', '31987654321', 'Rua da Paz', 789, 'Santa Teresa', 'Belo Horizonte', 'MG', 'Brasil', '03456-789', 'carlos.souza@email.com'),
+('45678901234', 'Ana Costa', '41987654321', 'Rua do Sol', 101, 'Vila Nova', 'Curitiba', 'PR', 'Brasil', '04567-890', 'ana.costa@email.com'),
+('56789012345', 'Lucas Pereira', '51987654321', 'Rua dos Coqueiros', 202, 'Parque das Árvores', 'Fortaleza', 'CE', 'Brasil', '05678-901', 'lucas.pereira@email.com');
 
--- DML'S PARA A TABELA FUNCIONARIOS
-INSERT INTO FUNCIONARIOS (FUNC_ID, FUNC_CPF, FUNC_NOME, FUNC_DATANASC, FUNC_RUA, FUNC_NUMRUA, FUNC_BAIRRO, FUNC_CIDADE, FUNC_ESTADO, FUNC_PAIS, FUNC_CODPOSTAL) VALUES (1, '12345678901', 'Roberto Almeida', '1985-05-15', 'Rua A', 10, 'Centro', 'Curitiba', 'PR', 'Brasil', '80000-000'), (2, '98765432100', 'Lucia Martins', '1990-08-25', 'Rua B', 20, 'Bela Vista', 'São Paulo', 'SP', 'Brasil', '01010-000'); 
-UPDATE FUNCIONARIOS SET FUNC_NOME = 'Roberto A. Almeida' WHERE FUNC_ID = 1;
+-- DML's para a Tabela FUNCIONARIOS
+INSERT INTO FUNCIONARIOS (FUNC_ID, FUNC_CPF, FUNC_NOME, FUNC_DATANASC, FUNC_RUA, FUNC_NUMRUA, FUNC_BAIRRO, FUNC_CIDADE, FUNC_ESTADO, FUNC_PAIS, FUNC_CODPOSTAL)
+VALUES 
+(1, '12345678901', 'Carlos Almeida', '1985-02-15', 'Rua da Alegria', 123, 'Centro', 'São Paulo', 'SP', 'Brasil', '01234-567'),
+(2, '23456789012', 'Fernanda Souza', '1990-06-20', 'Avenida Rio Branco', 456, 'Centro', 'Rio de Janeiro', 'RJ', 'Brasil', '02345-678'),
+(3, '34567890123', 'Roberto Lima', '1988-08-10', 'Rua das Palmeiras', 789, 'Jardim das Acácias', 'Belo Horizonte', 'MG', 'Brasil', '03456-789'),
+(4, '45678901234', 'Juliana Costa', '1992-04-22', 'Rua dos Lírios', 101, 'Vila Nova', 'Curitiba', 'PR', 'Brasil', '04567-890'),
+(5, '56789012345', 'Marcos Pereira', '1987-11-30', 'Rua do Cedro', 202, 'Vila São João', 'Fortaleza', 'CE', 'Brasil', '05678-901');
 
--- DML'S PARA A TABELA AERONAVES
-INSERT INTO AERONAVES (AERON_PREFIXO, AERON_MODELO, AERON_FABRICANTE, AERON_ANOFABR, AERON_CAPACIDADE, AERON_AUTONOMIA) VALUES ('PT-ABC', 'Boeing 737', 'Boeing', 2015, '180', '5000km'), ('PT-XYZ', 'Airbus A320', 'Airbus', 2018, '150', '6000km'); 
-UPDATE AERONAVES SET AERON_MODELO = 'Boeing 737 MAX' WHERE AERON_PREFIXO = 'PT-ABC';
+-- DML's para a Tabela AERONAVES
+INSERT INTO AERONAVES (AERON_PREFIXO, AERON_MODELO, AERON_FABRICANTE, AERON_ANOFABR, AERON_CAPACIDADE, AERON_AUTONOMIA)
+VALUES 
+('PR-ABC', 'Boeing 737', 'Boeing', 2015, '180 passageiros', '6000 km'),
+('PR-DEF', 'Airbus A320', 'Airbus', 2017, '150 passageiros', '5500 km'),
+('PR-GHI', 'Embraer 190', 'Embraer', 2018, '120 passageiros', '4500 km'),
+('PR-JKL', 'Boeing 777', 'Boeing', 2014, '350 passageiros', '13000 km'),
+('PR-MNO', 'Airbus A330', 'Airbus', 2019, '250 passageiros', '11000 km');
 
--- DML'S PARA A TABELA AEROPORTOS
-INSERT INTO AEROPORTOS (AEROP_CODIGO, AEROP_NOME, AEROP_CIDADE, AEROP_PAIS, AEROP_LATITUDE, AEROP_LONGITUDE) VALUES (1, 'Aeroporto de Guarulhos', 'São Paulo', 'Brasil', '-23.4356', '-46.4731'), (2, 'Aeroporto Internacional do Rio de Janeiro', 'Rio de Janeiro', 'Brasil', '-22.8099', '-43.2500'); 
-UPDATE AEROPORTOS SET AEROP_NOME = 'Aeroporto Internacional de São Paulo' WHERE AEROP_CODIGO = 1;
+-- DML's para a Tabela AEROPORTOS
+INSERT INTO AEROPORTOS (AEROP_CODIGO, AEROP_NOME, AEROP_CIDADE, AEROP_PAIS, AEROP_LATITUDE, AEROP_LONGITUDE)
+VALUES 
+(1, 'Aeroporto Internacional de São Paulo', 'São Paulo', 'Brasil', '-23.4344', '-46.4696'),
+(2, 'Aeroporto Internacional do Rio de Janeiro', 'Rio de Janeiro', 'Brasil', '-22.9123', '-43.1631'),
+(3, 'Aeroporto Internacional de Belo Horizonte', 'Belo Horizonte', 'Brasil', '-19.8558', '-43.9649'),
+(4, 'Aeroporto Internacional de Curitiba', 'Curitiba', 'Brasil', '-25.5201', '-49.1753'),
+(5, 'Aeroporto Internacional de Fortaleza', 'Fortaleza', 'Brasil', '-3.7764', '-38.5327');
 
--- DML'S PARA A TABELA VOOS
-INSERT INTO VOOS (VOO_ID, VOO_DATA, VOO_HORA, VOO_AEROP_ORIGEM, VOO_AEROP_DESTINO, VOO_AERONAVE) VALUES (1, '2024-01-01', '10:00:00', 1, 2, 'PT-ABC'), (2, '2024-01-02', '15:00:00', 2, 1, 'PT-XYZ'); 
-UPDATE VOOS SET VOO_HORA = '16:00:00' WHERE VOO_ID = 2;
+-- DML's para a Tabela VOOS
+INSERT INTO VOOS (VOO_ID, VOO_DATA, VOO_HORA, VOO_AEROP_ORIGEM, VOO_AEROP_DESTINO, VOO_AERONAVE)
+VALUES 
+(1, '2024-12-10', '08:00:00', 1, 2, 'PR-ABC'),
+(2, '2024-12-12', '14:30:00', 2, 3, 'PR-DEF'),
+(3, '2024-12-15', '18:45:00', 3, 4, 'PR-GHI'),
+(4, '2024-12-18', '10:30:00', 4, 5, 'PR-JKL'),
+(5, '2024-12-20', '13:00:00', 5, 1, 'PR-MNO');
 
--- DML'S PARA A TABELA EQUIPES
-INSERT INTO EQUIPES (VOO_ID, FUNC_ID) VALUES (1, 1), (2, 2); 
-UPDATE EQUIPES SET FUNC_ID = 2 WHERE VOO_ID = 1;
+-- DML's para a Tabela EQUIPES
+INSERT INTO EQUIPES (VOO_ID, FUNC_ID)
+VALUES 
+(1, 1),
+(1, 2),
+(2, 3),
+(2, 4),
+(3, 5);
 
--- DML'S PARA A TABELA RESERVAS
-INSERT INTO RESERVAS (RESERVA_COD, VOO_ID, PASS_CPF) VALUES (1, 1, '12345678901'), (2, 2, '10987654321'); 
-UPDATE RESERVAS SET PASS_CPF = '98765432100' WHERE RESERVA_COD = 1;
+-- DML's para a Tabela RESERVAS
+INSERT INTO RESERVAS (RESERVA_COD, VOO_ID, PASS_CPF)
+VALUES 
+(1, 1, '12345678901'),
+(2, 2, '23456789012'),
+(3, 3, '34567890123'),
+(4, 4, '45678901234'),
+(5, 5, '56789012345');
+

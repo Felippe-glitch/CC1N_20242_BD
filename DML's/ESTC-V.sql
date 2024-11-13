@@ -70,143 +70,182 @@ CREATE TABLE IF NOT EXISTS VENDAS_PRODUTOS (
     CONSTRAINT VEPRO_FK_VENDAS FOREIGN KEY (VENDA_ID) REFERENCES VENDAS(VENDA_ID)
 );
 
--- ----------------------------------------------------------------INSERTS----------------------------------------------------------------
 
 
+-- =====================> INSERTS <=====================
 
--- Inserts para a Tabela CLIENTES
+-- Tabela CLIENTES
 
 INSERT INTO CLIENTES (CLI_CPF, CLI_NOME, CLI_RUA, CLI_NUMRUA, CLI_BAIRRO, CLI_CIDADE, CLI_UF, CLI_PAIS, CLI_CEP, CLI_STATUS_PROMO)
 VALUES
-('123.456.789-00', 'João Silva', 'Rua das Flores', '123', 'Centro', 'São Paulo', 'SP', 'Brasil', '01001-000', 'APROVADO'),
-('987.654.321-00', 'Maria Souza', 'Avenida Paulista', '1500', 'Bela Vista', 'São Paulo', 'SP', 'Brasil', '01310-100', 'REPROVADO'),
-('111.222.333-44', 'Carlos Oliveira', 'Rua Augusta', '55', 'Jardins', 'São Paulo', 'SP', 'Brasil', '01410-000', 'APROVADO'),
-('555.666.777-88', 'Ana Costa', 'Rua das Acácias', '410', 'Vila Progresso', 'São Paulo', 'SP', 'Brasil', '02510-100', 'APROVADO'),
-('444.555.666-77', 'Lucas Pereira', 'Avenida Brasil', '800', 'Vila Mariana', 'São Paulo', 'SP', 'Brasil', '04080-001', 'REPROVADO');
+('123.456.789-00', 'James T. Kirk', 'USS Enterprise', '1701', 'Ponte de Comando', 'Estação Espacial', 'SS', 'Federação Unida dos Planetas', '12345-678', 'APROVADO'),
+('987.654.321-00', 'Spock', 'Comando Supremo Vulcano', '7', 'Katra', 'Vulcano', 'VU', 'Vulcano', '98765-432', 'APROVADO'),
+('112.233.445-66', 'Leonard McCoy', 'Starfleet Medical', '45', 'Enfermaria', 'Estação Espacial', 'EE', 'Federação Unida dos Planetas', '23456-789', 'REPROVADO'),
+('223.344.556-77', 'Jean-Luc Picard', 'USS Enterprise-D', '1701-D', 'Sala de Comando', 'Setor 001', 'EF', 'Federação Unida dos Planetas', '34567-890', 'APROVADO'),
+('334.455.667-88', 'Data', 'USS Enterprise-D', '1701-D', 'Seção de Engenharia', 'Setor 001', 'EF', 'Federação Unida dos Planetas', '45678-901', 'APROVADO');
 
+-- Tabela FORNECEDORES
 
-
--- Inserts para a Tabela FORNECEDORES
 
 INSERT INTO FORNECEDORES (FORN_CNPJ, FORN_NOME, FORN_TELEFONE, FORN_EMAIL)
 VALUES
-('12.345.678/0001-90', 'Fornecedor A', '(11) 98765-4321', 'contato@fornecedora.com'),
-('23.456.789/0001-01', 'Fornecedor B', '(11) 98876-5432', 'vendas@fornecedorb.com'),
-('34.567.890/0001-12', 'Fornecedor C', '(21) 99988-7766', 'suporte@fornecedorc.com'),
-('45.678.901/0001-23', 'Fornecedor D', '(11) 99777-6655', 'contato@fornecedord.com'),
-('56.789.012/0001-34', 'Fornecedor E', '(31) 98887-5544', 'vendas@fornecedore.com');
+('12.345.678/0001-00', 'Starfleet Supply Corp.', '+1-800-STARFLEET', 'contato@starfleetsupply.com'),
+('23.456.789/0001-11', 'Academia de Ciências Vulcana', '+1-800-VULCAN-123', 'ciencias@vulcan.edu'),
+('34.567.890/0001-22', 'Logística do Império Klingon', '+1-800-KLINGON-456', 'logistica@imperioklingon.gov'),
+('45.678.901/0001-33', 'Consórcio Comercial Ferengi', '+1-800-FERENGI-789', 'comercio@ferengicompany.com'),
+('56.789.012/0001-44', 'Império Estelar Romulano', '+1-800-ROMULAN-101', 'informacoes@romulanstar.net');
 
 
 
--- Inserts para a Tabela PRODUTOS
+-- Tabela PRODUTOS
 
 INSERT INTO PRODUTOS (PROD_ID, PROD_CATEGORIA, PROD_QTDDISPONIVEL, PROD_PRECO)
 VALUES
-(1, 'Eletrônicos', 50, 1999.99),
-(2, 'Móveis', 30, 799.50),
-(3, 'Roupas', 150, 120.00),
-(4, 'Alimentos', 200, 9.99),
-(5, 'Livros', 100, 59.90);
+(1, 'Tecnologia', 50, 9999.99),
+(2, 'Alimentos', 200, 15.50),
+(3, 'Equipamentos Médicos', 75, 350.00),
+(4, 'Armas', 30, 2500.00),
+(5, 'Roupas Espaciais', 100, 1200.00);
 
 
 
--- -------------------- TABELA PRODUTOS_FORNECEDORES --------------------
+-- Tabela PRODUTOs_FORNECEDORES
 
--- Inserts para a Tabela PRODUTOS_FORNECEDORES
 INSERT INTO PRODUTOS_FORNECEDORES (PROD_ID, FORN_CNPJ)
 VALUES
-(1, '12.345.678/0001-90'),
-(2, '23.456.789/0001-01'),
-(3, '34.567.890/0001-12'),
-(4, '45.678.901/0001-23'),
-(5, '56.789.012/0001-34');
+(1, '12.345.678/0001-00'),
+(2, '45.678.901/0001-33'),
+(3, '23.456.789/0001-11'),
+(4, '34.567.890/0001-22'),
+(5, '56.789.012/0001-44');
 
 
 
--- Inserts para a Tabela PAGAMENTOS
+-- Tabela PAGAMENTOS
 
 INSERT INTO PAGAMENTOS (PAG_ID, PAG_DATA, PAG_HORA, PAG_VALOR, PAG_STATUS)
 VALUES
-(1, '2024-05-10', '10:30:00', 2000.00, 'PAGO'),
-(2, '2024-05-11', '14:45:00', 500.00, 'PENDENTE'),
-(3, '2024-05-12', '09:00:00', 120.00, 'CANCELADO'),
-(4, '2024-05-13', '11:15:00', 799.50, 'PAGO'),
-(5, '2024-05-14', '15:00:00', 59.90, 'PENDENTE');
+(1, '2024-11-01', '14:30:00', 15000.00, 'PAGO'),
+(2, '2024-11-05', '10:00:00', 300.00, 'PAGO'),
+(3, '2024-10-20', '09:15:00', 2500.00, 'PAGO'),
+(4, '2024-11-12', '16:45:00', 1200.00, 'PENDENTE'),
+(5, '2024-11-15', '13:00:00', 500.00, 'PAGO');
 
 
 
--- Inserts para a Tabela VENDAS
+-- Tabela VENDAS
 
 INSERT INTO VENDAS (VENDA_ID, CLI_CPF, PAG_ID)
 VALUES
 (1, '123.456.789-00', 1),
 (2, '987.654.321-00', 2),
-(3, '111.222.333-44', 3),
-(4, '555.666.777-88', 4),
-(5, '444.555.666-77', 5);
+(3, '223.344.556-77', 3),
+(4, '334.455.667-88', 4),
+(5, '112.233.445-66', 5);
 
 
 
--- Inserts para a Tabela VENDAS_PRODUTOS
-
+-- Tabela VENDAS_PRODUTOS
 INSERT INTO VENDAS_PRODUTOS (VENDA_ID, PROD_ID, VEPRO_QTD_VENDIDA, VEPRO_VALORTOTAL)
 VALUES
-(1, 1, 1, 1999.99),
-(2, 2, 2, 1599.00),
-(3, 3, 3, 360.00),
-(4, 4, 5, 49.95),
-(5, 5, 1, 59.90);
+(1, 1, 2, 19999.98),
+(2, 2, 5, 77.50),
+(3, 3, 1, 350.00),
+(4, 4, 1, 2500.00),
+(5, 5, 3, 3600.00);
 
 
 
--- ----------------------------------------------------------------UPDATES----------------------------------------------------------------
+-- =====================> UPDATES <=====================
 
-
-
--- Updates para a Tabela CLIENTES
-
+-- Tabela CLIENTES
 UPDATE CLIENTES SET CLI_STATUS_PROMO = 'REPROVADO' WHERE CLI_CPF = '123.456.789-00'; 
-UPDATE CLIENTES SET CLI_CIDADE = 'Rio de Janeiro', CLI_UF = 'RJ' WHERE CLI_CPF = '987.654.321-00'; 
-UPDATE CLIENTES SET CLI_NOME = 'Carlos Henrique Oliveira', CLI_BAIRRO = 'Pinheiros' WHERE CLI_CPF = '111.222.333-44'; 
-UPDATE CLIENTES SET CLI_STATUS_PROMO = 'APROVADO', CLI_CEP = '04560-000' WHERE CLI_CPF = '555.666.777-88'; 
-UPDATE CLIENTES SET CLI_CIDADE = 'Campinas', CLI_UF = 'SP' WHERE CLI_CPF = '444.555.666-77';
+UPDATE CLIENTES SET CLI_BAIRRO = 'Nova Vulcano', CLI_CIDADE = 'Vulcano' WHERE CLI_CPF = '987.654.321-00'; 
 
 
 
--- Updates para a Tabela FORNECEDORES
+-- Tabela FORNECEDORES
 
-UPDATE FORNECEDORES SET FORN_TELEFONE = '11 99999-8888' WHERE FORN_CNPJ = '12.345.678/0001-00'; 
-UPDATE FORNECEDORES SET FORN_EMAIL = 'fornecedor1@email.com' WHERE FORN_CNPJ = '12.345.678/0001-01'; 
-UPDATE FORNECEDORES SET FORN_NOME = 'Fornecedor A' WHERE FORN_CNPJ = '12.345.678/0001-02'; 
-UPDATE FORNECEDORES SET FORN_TELEFONE = '21 99888-7777', FORN_EMAIL = 'fornecedorB@email.com' WHERE FORN_CNPJ = '12.345.678/0001-03'; 
-UPDATE FORNECEDORES SET FORN_NOME = 'Fornecedor C' WHERE FORN_CNPJ = '12.345.678/0001-04';
+UPDATE FORNECEDORES SET FORN_TELEFONE = '+1-800-STARFLEET-999' WHERE FORN_CNPJ = '12.345.678/0001-00'; 
+UPDATE FORNECEDORES SET FORN_EMAIL = 'suporte@klingonempire.gov' WHERE FORN_CNPJ = '34.567.890/0001-22'; 
 
 
 
--- Updates para a Tabela PRODUTOS
+-- Tabela PRODUTOS
 
-UPDATE PRODUTOS SET PROD_QTDDISPONIVEL = 100, PROD_PRECO = 19.99 WHERE PROD_ID = 1; 
-UPDATE PRODUTOS SET PROD_QTDDISPONIVEL = 200, PROD_PRECO = 29.99 WHERE PROD_ID = 2; 
-UPDATE PRODUTOS SET PROD_QTDDISPONIVEL = 150, PROD_PRECO = 9.99 WHERE PROD_ID = 3; 
-UPDATE PRODUTOS SET PROD_QTDDISPONIVEL = 75, PROD_PRECO = 39.99 WHERE PROD_ID = 4; 
-UPDATE PRODUTOS SET PROD_QTDDISPONIVEL = 120, PROD_PRECO = 49.99 WHERE PROD_ID = 5;
+UPDATE PRODUTOS SET PROD_QTDDISPONIVEL = 100 WHERE PROD_ID = 1; 
+UPDATE PRODUTOS SET PROD_PRECO = 350.00 WHERE PROD_ID = 2; 
 
 
 
--- Updates para a Tabela VENDAS
+-- Tabela PRODUTOS_FORNECEDORES
 
-UPDATE VENDAS SET CLI_CPF = '987.654.321-00', PAG_ID = 2 WHERE VENDA_ID = 1; 
-UPDATE VENDAS SET CLI_CPF = '123.456.789-00', PAG_ID = 1 WHERE VENDA_ID = 2; 
-UPDATE VENDAS SET CLI_CPF = '444.555.666-77', PAG_ID = 5 WHERE VENDA_ID = 3; 
-UPDATE VENDAS SET CLI_CPF = '555.666.777-88', PAG_ID = 4 WHERE VENDA_ID = 4; 
-UPDATE VENDAS SET CLI_CPF = '111.222.333-44', PAG_ID = 3 WHERE VENDA_ID = 5;
+UPDATE PRODUTOS_FORNECEDORES SET FORN_CNPJ = '45.678.901/0001-33' WHERE PROD_ID = 1 AND FORN_CNPJ = '12.345.678/0001-00';  
+UPDATE PRODUTOS_FORNECEDORES SET PROD_ID = 5 WHERE FORN_CNPJ = '23.456.789/0001-11' AND PROD_ID = 3;  
 
 
 
--- Updates para a Tabela VENDAS_PRODUTOS
+-- Tabela PAGAMENTOS
 
-UPDATE VENDAS_PRODUTOS SET VEPRO_QTD_VENDIDA = 10, VEPRO_VALORTOTAL = 199.90 WHERE VENDA_ID = 1 AND PROD_ID = 1; 
-UPDATE VENDAS_PRODUTOS SET VEPRO_QTD_VENDIDA = 5, VEPRO_VALORTOTAL = 149.95 WHERE VENDA_ID = 2 AND PROD_ID = 2; 
-UPDATE VENDAS_PRODUTOS SET VEPRO_QTD_VENDIDA = 3, VEPRO_VALORTOTAL = 29.97 WHERE VENDA_ID = 3 AND PROD_ID = 3; 
-UPDATE VENDAS_PRODUTOS SET VEPRO_QTD_VENDIDA = 2, VEPRO_VALORTOTAL = 79.98 WHERE VENDA_ID = 4 AND PROD_ID = 4; 
-UPDATE VENDAS_PRODUTOS SET VEPRO_QTD_VENDIDA = 7, VEPRO_VALORTOTAL = 349.93 WHERE VENDA_ID = 5 AND PROD_ID = 5;
+UPDATE PAGAMENTOS SET PAG_STATUS = 'CANCELADO', PAG_VALOR = 0 WHERE PAG_ID = 4;  
+UPDATE PAGAMENTOS SET PAG_HORA = '17:30:00' WHERE PAG_ID = 2; 
+
+
+
+-- Tabela VENDAS
+
+UPDATE VENDAS SET CLI_CPF = '223.344.556-77' WHERE VENDA_ID = 3;
+UPDATE VENDAS SET PAG_ID = 5 WHERE VENDA_ID = 1;
+
+
+
+-- Tabela VENDAS_PRODUTOS
+
+UPDATE VENDAS_PRODUTOS SET VEPRO_QTD_VENDIDA = 3, VEPRO_VALORTOTAL = 29999.97 WHERE VENDA_ID = 1 AND PROD_ID = 1;
+UPDATE VENDAS_PRODUTOS SET VEPRO_QTD_VENDIDA = 2, VEPRO_VALORTOTAL = 31.00 WHERE VENDA_ID = 2 AND PROD_ID = 2; 
+
+
+
+-- =====================> UPDATES <=====================
+
+-- Tabela CLIENTES
+
+DELETE FROM CLIENTES WHERE CLI_CPF = '123.456.789-00'; 
+
+
+
+-- Tabela FORNECEDORES
+
+DELETE FROM FORNECEDORES WHERE FORN_CNPJ = '45.678.901/0001-33'; 
+
+
+
+-- Tabela PRODUTOS
+
+DELETE FROM PRODUTOS WHERE PROD_ID = 1;  
+
+
+
+-- Tabela PRODUTOS_FORNECEDORES
+
+DELETE FROM PRODUTOS_FORNECEDORES WHERE PROD_ID = 2 AND FORN_CNPJ = '12.345.678/0001-00'; 
+
+
+
+-- Tabela PAGAMENTOS
+
+DELETE FROM PAGAMENTOS WHERE PAG_ID = 4;  
+
+
+
+-- Tabela VENDAS
+
+DELETE FROM VENDAS WHERE VENDA_ID = 3;
+
+
+
+-- Tabela VENDAS_PRODUTOS
+
+DELETE FROM VENDAS_PRODUTOS WHERE VENDA_ID = 1 AND PROD_ID = 1; 
+
+

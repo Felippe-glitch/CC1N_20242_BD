@@ -689,7 +689,7 @@ UPDATE PRODUTOS_ENCOMENDAS SET QNT_PROD = 110 WHERE ENCM_COD = 2 AND PROD_COD = 
 
 
 
--- =====================> UPDATES <=====================
+-- =====================> DELETES <=====================
 
 -- DELETE para CARGOS
 

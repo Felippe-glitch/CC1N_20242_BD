@@ -90,7 +90,209 @@ CREATE TABLE IF NOT EXISTS ALUNOS_AULAS (
     CONSTRAINT ALAU_FK_ALUNOS FOREIGN KEY(ALUNO_ID) REFERENCES ALUNOS(ALUNO_ID) 
 );
 
--- -------------------- TABELA ALUNOS --------------------
+-- =====================> INSERTS <=====================
+
+CREATE SCHEMA EST_CASO_IV;
+USE ESTC_IV;
+
+-- INSERTS na tabela ALUNOS
+
+INSERT INTO ALUNOS (ALUNO_ID, ALUNO_CPF, ALUNO_NOME, ALUNO_DATANASC, ALUNO_RUA, ALUNO_NUM, ALUNO_COMPLEMENTO, ALUNO_BAIRRO, ALUNO_CIDADE, ALUNO_CEP, ALUNO_UF, ALUNO_PAIS)
+VALUES 
+(1, '123.456.789-00', 'Bruce Wayne', '1989-02-19', 'Wayne Manor', 1000, 'Mansão Wayne', 'Gotham', 'Gotham City', '12345-000', 'NY', 'EUA'),
+(2, '987.654.321-00', 'Clark Kent', '1980-06-18', 'Smallville Road', 123, 'Fazenda Kent', 'Smallville', 'Kansas', '54321-000', 'KS', 'EUA'),
+(3, '111.222.333-44', 'Diana Prince', '1995-07-25', 'Themyscira Street', 10, 'Palácio de Themyscira', 'Ilha de Themyscira', 'Ilha Secreta', '67890-000', 'NA', 'Grécia'),
+(4, '555.666.777-88', 'Barry Allen', '1992-03-14', 'Central City Avenue', 45, 'Laboratório Central City', 'Central City', 'Missouri', '11223-000', 'MO', 'EUA'),
+(5, '333.444.555-99', 'Hal Jordan', '1987-12-15', 'Coast City Blvd', 300, 'Quartel-General dos Lanternas', 'Coast City', 'California', '44556-000', 'CA', 'EUA');
 
 
 
+-- INSERTS na tabela INSTRUTORES
+
+INSERT INTO INSTRUTORES (INSTRU_ID, INSTRU_CPF, INSTRU_NOME, INSTRU_DATANASC, INSTRU_RUA, INSTRU_NUM, INSTRU_COMPLEMENTO, INSTRU_BAIRRO, INSTRU_CIDADE, INSTRU_CEP, INSTRU_UF, INSTRU_PAIS, INSTRU_ESPECIALIDADE)
+VALUES 
+(1, '267.333.294-55', 'Ra’s al Ghul', '1955-05-10', 'Lazarus Pit', 1, 'Caverna de Ra’s', 'Lágrimas de Ra’s', 'Ninivah', '99999-000', 'Iraq', 'Iraque', 'Estratégia e Treinamento de Luta'),
+(2, '877.888.009-00', 'John Constantine', '1983-01-24', 'Londres Road', 56, 'Cabana do Constantino', 'Londres', 'Inglaterra', '10001-000', 'LDN', 'Reino Unido', 'Magia e Combate Psíquico'),
+(3, '444.555.666-69', 'Oliver Queen', '1985-05-25', 'Star City Road', 88, 'Casa da Flecha Verde', 'Star City', 'Star City', '32123-000', 'CA', 'EUA', 'Arqueiria e Combate Corpo a Corpo');
+
+
+
+-- INSERTS na tabela MODALIDADES
+
+INSERT INTO MODALIDADES (MOD_ID, MOD_NOME, MOD_DESCRICAO)
+VALUES 
+(1, 'Luta Livre', 'Treinamento focado em técnicas de combate corpo a corpo.'),
+(2, 'Arqueria', 'Treinamento especializado no uso de arcos e flechas.'),
+(3, 'Magia', 'Treinamento em artes místicas e esotéricas.'),
+(4, 'Velocidade', 'Treinamento em resistência e velocidade sobre-humana.'),
+(5, 'Força Bruta', 'Treinamento de resistência e força extrema.');
+
+
+
+-- INSERTS na tabela PLANOS_TREINAMENTOS
+
+INSERT INTO PLANOS_TREINAMENTOS (PLAN_ID, ALUNO_ID, INSTRU_ID, PLAN_DESCRICAO, PLAN_DATAINICIO, PLAN_DATAFIM)
+VALUES
+(1, 1, 1, 'Treinamento de combate corpo a corpo.', '2024-11-01', '2025-11-01'),
+(2, 2, 3, 'Treinamento de Arqueria.', '2024-11-05', '2025-05-05'),
+(3, 3, 2, 'Treinamento de magia avançada.', '2024-10-15', '2025-10-15'),
+(4, 4, 3, 'Treinamento focado em agilidade.', '2024-11-10', '2025-11-10'),
+(5, 5, 1, 'Treinamento de força e resistência.', '2024-11-12', '2025-11-12');
+
+
+
+-- INSERTS na tabela AULAS
+
+INSERT INTO AULAS (AULA_ID, MOD_ID, INSTRU_ID, AULA_HORARIO, AULA_CAPACIDADE)
+VALUES
+(1, 1, 1, '08:00:00', 10),
+(2, 2, 3, '09:00:00', 12),
+(3, 3, 2, '10:30:00', 8),
+(4, 4, 2, '14:00:00', 15),
+(5, 5, 1, '16:00:00', 20);
+
+
+
+-- INSERTS na tabela MATRICULAS
+
+INSERT INTO MATRICULAS (MATRICULA_ID, ALUNO_ID, MOD_ID, MATRICULA_DATA, MATRICULA_STATUS)
+VALUES
+(1, 1, 1, '2024-11-01', 'MATRICULADO'),
+(2, 2, 2, '2024-11-05', 'MATRICULADO'),
+(3, 3, 3, '2024-10-15', 'MATRICULADO'),
+(4, 4, 4, '2024-11-10', 'MATRICULADO'),
+(5, 5, 5, '2024-11-12', 'MATRICULADO');
+
+
+
+-- INSRETS na tabela PAGAMENTOS
+
+INSERT INTO PAGAMENTOS (PAG_ID, PAG_DATA, PAG_VALOR, PAG_STATUS, MATRICULA_ID)
+VALUES
+(1, '2024-11-01', 1000.00, 'PAGO', 1),
+(2, '2024-11-05', 800.00, 'PAGO', 2),
+(3, '2024-10-15', 1200.00, 'PAGO', 3),
+(4, '2024-11-10', 950.00, 'PAGO', 4),
+(5, '2024-11-12', 1100.00, 'PAGO', 5);
+
+
+
+-- INSERTS na tabela ALUNOS_AULAS
+
+INSERT INTO ALUNOS_AULAS (AULA_ID, ALUNO_ID)
+VALUES
+(1, 1),
+(2, 2),
+(3, 3),
+(4, 4),
+(5, 5);
+
+
+
+-- =====================> INSERTS <=====================
+
+
+
+-- UPDATES de ALUNOS
+
+UPDATE ALUNOS SET ALUNO_RUA = 'Gotham Street', ALUNO_CIDADE = 'Gotham City' WHERE ALUNO_ID = 1;
+UPDATE ALUNOS SET ALUNO_DATANASC = '1980-05-15' WHERE ALUNO_ID = 2;
+
+
+
+-- UPDATES de INSTRUTORES
+
+UPDATE INSTRUTORES SET INSTRU_ESPECIALIDADE = 'Treinamento em Artes Marciais e Luta Estratégica' WHERE INSTRU_ID = 1;
+UPDATE INSTRUTORES SET INSTRU_CIDADE = 'Newcastle' WHERE INSTRU_ID = 2;
+
+
+
+-- UPDATES de MODALIDADES
+
+UPDATE MODALIDADES SET MOD_DESCRICAO = 'Treinamento em artes místicas, controle de energias sobrenaturais, invocação de entidades e feitiçaria. Utilizado por magos como John Constantine.' WHERE MOD_ID = 3;
+UPDATE MODALIDADES SET MOD_NOME = 'Treinamento de Velocidade Flash' WHERE MOD_ID = 4;
+
+
+
+-- UPDATES de PLANOS_TREINAMENTOS
+
+UPDATE PLANOS_TREINAMENTOS SET PLAN_DATAFIM = '2025-12-01' WHERE ALUNO_ID = 1;
+UPDATE PLANOS_TREINAMENTOS SET PLAN_DESCRICAO = 'Treinamento focado em força, resistência e controle de superpoderes.' WHERE ALUNO_ID = 2;
+
+
+
+-- UPDATES de AULAS
+
+UPDATE AULAS SET AULA_CAPACIDADE = 15 WHERE AULA_ID = 1;
+UPDATE AULAS SET AULA_HORARIO = '18:00:00' WHERE AULA_ID = 3;
+
+
+
+-- UPDATES de MATRICULAS
+
+UPDATE MATRICULAS SET MATRICULA_STATUS = 'NAO MATRICULADO' WHERE ALUNO_ID = 5;
+UPDATE MATRICULAS SET MATRICULA_DATA = '2024-11-01' WHERE ALUNO_ID = 3;
+
+
+
+-- UPDATES de PAGAMENTOS
+
+UPDATE PAGAMENTOS SET PAG_VALOR = 950.00 WHERE MATRICULA_ID = 4;
+UPDATE PAGAMENTOS SET PAG_STATUS = 'PENDENTE' WHERE MATRICULA_ID = 2;
+
+
+
+-- UPDATES de ALUNOS_AULAS
+
+UPDATE ALUNOS_AULAS SET AULA_ID = 4 WHERE ALUNO_ID = 5 AND AULA_ID = 5;
+UPDATE ALUNOS_AULAS SET AULA_ID = 2 WHERE ALUNO_ID = 4 AND AULA_ID = 4;
+
+
+
+-- =====================> DELETES <=====================
+
+-- DELETE para ALUNOS
+
+DELETE FROM ALUNOS WHERE ALUNO_ID IN (1, 2, 3, 4, 5);
+
+
+
+-- DELETE para INSTRUTORES
+
+DELETE FROM INSTRUTORES WHERE INSTRU_ID IN (1, 2, 3);
+
+
+
+-- DELETE para MODALIDADES
+
+DELETE FROM MODALIDADES WHERE MOD_ID IN (1, 2, 3, 4, 5);
+
+
+
+-- DELETE para PLANOS_TREINAMENTOS
+
+DELETE FROM PLANOS_TREINAMENTOS WHERE PLAN_ID IN (1, 2, 3, 4, 5);
+
+
+
+-- DELETE para tabela AULAS
+
+DELETE FROM AULAS WHERE AULA_ID IN (1, 2, 3, 4, 5);
+
+
+
+-- DELETE para MATRICULAS
+
+DELETE FROM MATRICULAS WHERE MATRICULA_ID IN (1, 2, 3, 4, 5);
+
+
+
+-- DELETE para PAGAMENTOS
+
+DELETE FROM PAGAMENTOS WHERE PAG_ID IN (1, 2, 3, 4, 5);
+
+
+
+-- DELETE para ALUNOS_AULAS
+
+DELETE FROM ALUNOS_AULAS WHERE AULA_ID IN (1, 2, 3, 4, 5) AND ALUNO_ID IN (1, 2, 3, 4, 5);

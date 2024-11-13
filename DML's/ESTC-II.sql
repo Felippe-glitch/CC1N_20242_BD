@@ -1,11 +1,8 @@
-#CRIANDO O BANCO DE DADOS
 CREATE SCHEMA EMPRESA_AEREA;
-
-#USANDO O BANCO DE DADOS
 USE EMPRESA_AEREA;
 
 
-#--------------------TABELA DE PASSAGEIROS--------------------
+-- -------------------- PASSAGEIROS --------------------
 CREATE TABLE IF NOT EXISTS PASSAGEIROS (
     PASS_CPF VARCHAR(14) PRIMARY KEY,
     PASS_NOME VARCHAR(50) NOT NULL,
@@ -20,7 +17,7 @@ CREATE TABLE IF NOT EXISTS PASSAGEIROS (
     PASS_EMAIL VARCHAR(50) NOT NULL
 );
 
-#--------------------TABELA DE FUNCIONARIOS--------------------
+-- -------------------- FUNCIONARIOS --------------------
 
 CREATE TABLE IF NOT EXISTS FUNCIONARIOS (
     FUNC_ID INT PRIMARY KEY,
@@ -36,7 +33,7 @@ CREATE TABLE IF NOT EXISTS FUNCIONARIOS (
     FUNC_CODPOSTAL VARCHAR(10) NOT NULL
 );
 
-#--------------------TABELA DE AERONAVES--------------------
+-- -------------------- AERONAVES --------------------
 
 CREATE TABLE IF NOT EXISTS AERONAVES (
     AERON_PREFIXO VARCHAR(10) PRIMARY KEY,
@@ -47,7 +44,7 @@ CREATE TABLE IF NOT EXISTS AERONAVES (
     AERON_AUTONOMIA VARCHAR(10) NOT NULL
 );
 
-#--------------------TABELA DE AEROPORTOS--------------------
+-- -------------------- AEROPORTOS --------------------
 
 CREATE TABLE IF NOT EXISTS AEROPORTOS (
     AEROP_CODIGO INT PRIMARY KEY,
@@ -58,7 +55,7 @@ CREATE TABLE IF NOT EXISTS AEROPORTOS (
     AEROP_LONGITUDE TEXT NOT NULL
 );
 
-#--------------------TABELA DE VOOS--------------------
+-- -------------------- VOOS --------------------
 
 CREATE TABLE IF NOT EXISTS VOOS (
     VOO_ID INT PRIMARY KEY,
@@ -72,7 +69,7 @@ CREATE TABLE IF NOT EXISTS VOOS (
     CONSTRAINT FK_AERONAVE FOREIGN KEY(VOO_AERONAVE) REFERENCES AERONAVES(AERON_PREFIXO)
 );
 
-#--------------------TABELA DE EQUIPES--------------------
+-- -------------------- EQUIPES --------------------
 
 CREATE TABLE IF NOT EXISTS EQUIPES (
     VOO_ID INT NOT NULL,
@@ -82,7 +79,7 @@ CREATE TABLE IF NOT EXISTS EQUIPES (
     CONSTRAINT VOFU_FK_FUNCIONARIO FOREIGN KEY(FUNC_ID) REFERENCES FUNCIONARIOS(FUNC_ID)
 );
 
-#--------------------TABELA DE RESERVAS--------------------
+-- -------------------- RESREVAS --------------------
 
 CREATE TABLE IF NOT EXISTS RESERVAS (
     RESERVA_COD INT PRIMARY KEY,
@@ -92,52 +89,70 @@ CREATE TABLE IF NOT EXISTS RESERVAS (
     CONSTRAINT FK_VOOS FOREIGN KEY(VOO_ID) REFERENCES VOOS(VOO_ID)
 );
 
--- DML's para a Tabela PASSAGEIROS
+
+
+-- =====================> INSERTS <=====================
+
+-- INSERTS para a tabela PASSAGEIROS
+
 INSERT INTO PASSAGEIROS (PASS_CPF, PASS_NOME, PASS_TELEFONE, PASS_RUA, PASS_NUMRUA, PASS_BAIRRO, PASS_CIDADE, PASS_ESTADO, PASS_PAIS, PASS_CODPOSTAL, PASS_EMAIL)
 VALUES 
-('12345678901', 'João Silva', '11987654321', 'Rua das Flores', 123, 'Centro', 'São Paulo', 'SP', 'Brasil', '01234-567', 'joao.silva@email.com'),
-('23456789012', 'Maria Oliveira', '21987654321', 'Avenida Brasil', 456, 'Jardim Paulista', 'Rio de Janeiro', 'RJ', 'Brasil', '02345-678', 'maria.oliveira@email.com'),
-('34567890123', 'Carlos Souza', '31987654321', 'Rua da Paz', 789, 'Santa Teresa', 'Belo Horizonte', 'MG', 'Brasil', '03456-789', 'carlos.souza@email.com'),
-('45678901234', 'Ana Costa', '41987654321', 'Rua do Sol', 101, 'Vila Nova', 'Curitiba', 'PR', 'Brasil', '04567-890', 'ana.costa@email.com'),
-('56789012345', 'Lucas Pereira', '51987654321', 'Rua dos Coqueiros', 202, 'Parque das Árvores', 'Fortaleza', 'CE', 'Brasil', '05678-901', 'lucas.pereira@email.com');
+('12345678901', 'Frodo Bolseiro', '11987654321', 'Madrugada da Comarca', 123, 'Bolseiros', 'Comarca', 'Condado', 'Terra-média', '01234-567', 'frodo.bolseiro@email.com'),
+('23456789012', 'Arwen Evenstar', '21987654321', 'Avenida Rivendel', 456, 'Jardim Elven', 'Rivendel', 'Terra-média', 'Terra-média', '02345-678', 'arwen.evenstar@email.com'),
+('34567890123', 'Gimli Filho de Glóin', '31987654321', 'Rua dos Anões', 789, 'Caverna de Moria', 'Moria', 'Terra-média', 'Terra-média', '03456-789', 'gimli.moria@email.com'),
+('45678901234', 'Legolas Verdefloresta', '41987654321', 'Rua das Folhas', 101, 'Bosque Verde', 'Floresta das Lothlórien', 'Terra-média', 'Terra-média', '04567-890', 'legolas.lothlorien@email.com'),
+('56789012345', 'Gandalf Cinzento', '51987654321', 'Rua da Magia', 202, 'Vila dos Magos', 'Isengard', 'Terra-média', 'Terra-média', '05678-901', 'gandalf.cinzento@email.com');
 
--- DML's para a Tabela FUNCIONARIOS
+
+
+-- INSERTS para a tabela FUNCIONARIOS
+
 INSERT INTO FUNCIONARIOS (FUNC_ID, FUNC_CPF, FUNC_NOME, FUNC_DATANASC, FUNC_RUA, FUNC_NUMRUA, FUNC_BAIRRO, FUNC_CIDADE, FUNC_ESTADO, FUNC_PAIS, FUNC_CODPOSTAL)
 VALUES 
-(1, '12345678901', 'Carlos Almeida', '1985-02-15', 'Rua da Alegria', 123, 'Centro', 'São Paulo', 'SP', 'Brasil', '01234-567'),
-(2, '23456789012', 'Fernanda Souza', '1990-06-20', 'Avenida Rio Branco', 456, 'Centro', 'Rio de Janeiro', 'RJ', 'Brasil', '02345-678'),
-(3, '34567890123', 'Roberto Lima', '1988-08-10', 'Rua das Palmeiras', 789, 'Jardim das Acácias', 'Belo Horizonte', 'MG', 'Brasil', '03456-789'),
-(4, '45678901234', 'Juliana Costa', '1992-04-22', 'Rua dos Lírios', 101, 'Vila Nova', 'Curitiba', 'PR', 'Brasil', '04567-890'),
-(5, '56789012345', 'Marcos Pereira', '1987-11-30', 'Rua do Cedro', 202, 'Vila São João', 'Fortaleza', 'CE', 'Brasil', '05678-901');
+(1, '12345678901', 'Aragorn Filho de Arathorn', '1985-02-15', 'Rua do Rei', 123, 'Centro', 'Gondor', 'Gondor', 'Terra-média', '01234-567'),
+(2, '23456789012', 'Gimli Filho de Glóin', '1990-06-20', 'Avenida das Pedras', 456, 'Caverna de Moria', 'Moria', 'Terra-média', 'Terra-média', '02345-678'),
+(3, '34567890123', 'Boromir de Gondor', '1988-08-10', 'Rua do Senhor de Gondor', 789, 'Porto de Gondor', 'Gondor', 'Terra-média', 'Terra-média', '03456-789'),
+(4, '45678901234', 'Galadriel Rainha de Lothlórien', '1992-04-22', 'Rua das Estrelas', 101, 'Lothlórien', 'Lothlórien', 'Terra-média', 'Terra-média', '04567-890'),
+(5, '56789012345', 'Faramir Filho de Denethor', '1987-11-30', 'Rua da Vigilância', 202, 'Minas Tirith', 'Gondor', 'Terra-média', 'Terra-média', '05678-901');
 
--- DML's para a Tabela AERONAVES
+
+
+-- INSERTS para a tabela AERONAVES
+
 INSERT INTO AERONAVES (AERON_PREFIXO, AERON_MODELO, AERON_FABRICANTE, AERON_ANOFABR, AERON_CAPACIDADE, AERON_AUTONOMIA)
 VALUES 
-('PR-ABC', 'Boeing 737', 'Boeing', 2015, '180 passageiros', '6000 km'),
-('PR-DEF', 'Airbus A320', 'Airbus', 2017, '150 passageiros', '5500 km'),
-('PR-GHI', 'Embraer 190', 'Embraer', 2018, '120 passageiros', '4500 km'),
-('PR-JKL', 'Boeing 777', 'Boeing', 2014, '350 passageiros', '13000 km'),
-('PR-MNO', 'Airbus A330', 'Airbus', 2019, '250 passageiros', '11000 km');
+('PR-FRO', 'Grifo de Gwaihir', 'Gwaihir', 2015, '180 passageiros', '6000 km'),
+('PR-ARW', 'Águia de Rivendel', 'Rivendel', 2017, '150 passageiros', '5500 km'),
+('PR-GIM', 'Navio de Durin', 'Anões de Moria', 2018, '120 passageiros', '4500 km'),
+('PR-LEG', 'Falcão de Lothlórien', 'Elfos', 2014, '350 passageiros', '13000 km'),
+('PR-GAN', 'Pássaro de Gandalf', 'Gandalf', 2019, '250 passageiros', '11000 km');
 
--- DML's para a Tabela AEROPORTOS
+
+
+-- INSERTS para a tabela AEROPORTOS
+
 INSERT INTO AEROPORTOS (AEROP_CODIGO, AEROP_NOME, AEROP_CIDADE, AEROP_PAIS, AEROP_LATITUDE, AEROP_LONGITUDE)
 VALUES 
-(1, 'Aeroporto Internacional de São Paulo', 'São Paulo', 'Brasil', '-23.4344', '-46.4696'),
-(2, 'Aeroporto Internacional do Rio de Janeiro', 'Rio de Janeiro', 'Brasil', '-22.9123', '-43.1631'),
-(3, 'Aeroporto Internacional de Belo Horizonte', 'Belo Horizonte', 'Brasil', '-19.8558', '-43.9649'),
-(4, 'Aeroporto Internacional de Curitiba', 'Curitiba', 'Brasil', '-25.5201', '-49.1753'),
-(5, 'Aeroporto Internacional de Fortaleza', 'Fortaleza', 'Brasil', '-3.7764', '-38.5327');
+(1, 'Porto de Gondor', 'Minas Tirith', 'Gondor', '-23.4344', '-46.4696'),
+(2, 'Aeroporto de Rivendel', 'Rivendel', 'Terra-média', '-22.9123', '-43.1631'),
+(3, 'Aeroporto de Moria', 'Moria', 'Terra-média', '-19.8558', '-43.9649'),
+(4, 'Aeroporto de Lothlórien', 'Lothlórien', 'Terra-média', '-25.5201', '-49.1753'),
+(5, 'Aeroporto de Isengard', 'Isengard', 'Terra-média', '-3.7764', '-38.5327');
 
--- DML's para a Tabela VOOS
+
+
+-- -------------------- VOOS --------------------
+
 INSERT INTO VOOS (VOO_ID, VOO_DATA, VOO_HORA, VOO_AEROP_ORIGEM, VOO_AEROP_DESTINO, VOO_AERONAVE)
 VALUES 
-(1, '2024-12-10', '08:00:00', 1, 2, 'PR-ABC'),
-(2, '2024-12-12', '14:30:00', 2, 3, 'PR-DEF'),
-(3, '2024-12-15', '18:45:00', 3, 4, 'PR-GHI'),
-(4, '2024-12-18', '10:30:00', 4, 5, 'PR-JKL'),
-(5, '2024-12-20', '13:00:00', 5, 1, 'PR-MNO');
+(1, '2024-12-10', '08:00:00', 1, 2, 'PR-FRO'),
+(2, '2024-12-12', '14:30:00', 2, 3, 'PR-ARW'),
+(3, '2024-12-15', '18:45:00', 3, 4, 'PR-GIM'),
+(4, '2024-12-18', '10:30:00', 4, 5, 'PR-LEG'),
+(5, '2024-12-20', '13:00:00', 5, 1, 'PR-GAN');
 
--- DML's para a Tabela EQUIPES
+-- -------------------- EQUIPES --------------------
+
 INSERT INTO EQUIPES (VOO_ID, FUNC_ID)
 VALUES 
 (1, 1),
@@ -146,12 +161,110 @@ VALUES
 (2, 4),
 (3, 5);
 
--- DML's para a Tabela RESERVAS
+-- -------------------- RESERVAS --------------------
+
 INSERT INTO RESERVAS (RESERVA_COD, VOO_ID, PASS_CPF)
 VALUES 
 (1, 1, '12345678901'),
 (2, 2, '23456789012'),
-(3, 3, '34567890123'),
-(4, 4, '45678901234'),
+(3, 3, '34567890123'), 
+(4, 4, '45678901234'), 
 (5, 5, '56789012345');
+
+
+
+-- =====================> UPDATES <=====================
+
+-- Tabela PASSAGEIROS
+
+UPDATE PASSAGEIROS SET PASS_TELEFONE = '11999999999' WHERE PASS_CPF = '12345678901';
+UPDATE PASSAGEIROS SET PASS_EMAIL = 'arwen.evenstar@terra-media.com' WHERE PASS_CPF = '23456789012';
+
+
+
+-- Tabela FUNCIONARIOS
+
+UPDATE FUNCIONARIOS SET FUNC_NOME = 'Aragorn Rei de Gondor' WHERE FUNC_CPF = '12345678901';
+UPDATE FUNCIONARIOS SET FUNC_CIDADE = 'Valinor' WHERE FUNC_CPF = '45678901234';
+
+
+
+-- Tabela AERONAVES
+
+UPDATE AERONAVES SET AERON_CAPACIDADE = '200 passageiros' WHERE AERON_PREFIXO = 'PR-FRO';
+UPDATE AERONAVES SET AERON_ANOFABR = 2020 WHERE AERON_PREFIXO = 'PR-ARW';
+
+
+
+-- Tabela AEROPORTOS
+
+UPDATE AEROPORTOS SET AEROP_NOME = 'Porto de Gondor Internacional' WHERE AEROP_CODIGO = 1;
+UPDATE AEROPORTOS SET AEROP_CIDADE = 'Valinor' WHERE AEROP_CODIGO = 4;
+
+
+
+-- Tabela VOOS
+
+UPDATE VOOS SET VOO_HORA = '12:00:00' WHERE VOO_ID = 1;
+UPDATE VOOS SET VOO_DATA = '2024-12-22' WHERE VOO_ID = 5;
+
+
+
+-- Tabela EQUIPES
+
+UPDATE EQUIPES SET FUNC_ID = 3 WHERE VOO_ID = 1 AND FUNC_ID = 2;
+UPDATE EQUIPES SET FUNC_ID = 4 WHERE VOO_ID = 2 AND FUNC_ID = 3;
+
+
+
+-- Tabela RESERVAS
+
+UPDATE RESERVAS SET PASS_CPF = '56789012345' WHERE RESERVA_COD = 1;
+UPDATE RESERVAS SET VOO_ID = 4 WHERE RESERVA_COD = 3;
+
+
+
+-- =====================> DELETES <=====================
+
+-- Tabela PASSAGEIROS
+
+DELETE FROM PASSAGEIROS WHERE PASS_CPF = '12345678901';
+
+
+
+-- Tabela FUNCIONARIOS
+
+DELETE FROM FUNCIONARIOS WHERE FUNC_CPF = '12345678901';
+
+
+
+-- Tabela AERONAVES
+
+DELETE FROM AERONAVES WHERE AERON_PREFIXO = 'PR-FRO';
+
+
+
+-- Tabela AEROPORTOS
+
+DELETE FROM AEROPORTOS WHERE AEROP_CODIGO = 1;
+
+
+
+-- Tabela VOOS
+
+DELETE FROM VOOS WHERE VOO_ID = 1;
+
+
+
+-- Tabela EQUIPES
+
+DELETE FROM EQUIPES WHERE VOO_ID = 1 AND FUNC_ID = 2;
+
+
+
+-- Tabela RESERVAS
+
+DELETE FROM RESERVAS WHERE RESERVA_COD = 1;
+
+
 
